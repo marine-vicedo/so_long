@@ -6,11 +6,18 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:33:05 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/21 12:24:08 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/25 18:47:46 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*checks if :
+- there is more than 1 parameter (argc > 2) : print a warning to tell the user that only the 1st parameter will be considered
+- the table follow the above rules : an invalid character (something else thant 0, 1, C, E, P)
+OR a line with a different lenght OR more than one player : print an error msg, invalid the map, free and exit
+
+*/
 
 int	check_format(char **map)
 {
