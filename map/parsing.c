@@ -6,37 +6,52 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:33:05 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/25 18:47:46 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/26 19:17:21 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*checks if :
-- there is more than 1 parameter (argc > 2) : print a warning to tell the user that only the 1st parameter will be considered
+/* check is :
 - the table follow the above rules : an invalid character (something else thant 0, 1, C, E, P)
-OR a line with a different lenght OR more than one player : print an error msg, invalid the map, free and exit
+OR a line with a different lenght OR more than one player : print an error msg, invalid the map, free and exit*/
 
-*/
-
-int	check_format(char **map)
+int	check_format(char **map, t_game *game)
 {
-	size_t	width;
+	//size_t	width;
 	int	line;
 
 	line = 0;
-	width = ft_strlen(map[line]);
-	line++;
+	//width = ft_strlen(map[line]);
+	//line++;
 	while (map[line] != NULL)
 	{
-		if (ft_strlen(map[line]) != width)
+		if (ft_strlen(map[line]) != game->width)
+		{
+			printf("%ld\n", game->width);
+			printf("%ld\n", ft_strlen(map[line]));
 			return (0);
+		}
 		line++;
 	}
 	return (1);
 }
 
-int walls_y(char **map)
+/*int	invalid_character(char **map)
+{
+	int	height;
+	int	width;
+	t_data	map;
+
+	height = count_tablines(map);
+	map.height = height;
+	width = ft_strlen(map[1]);
+	map.width = width;
+
+	while ()
+}*/
+
+/*int walls_y(char **map)
 {
 	int	line;
 	int	height;
@@ -49,7 +64,7 @@ int walls_y(char **map)
 	if (ft_strchr(map[line], '1') == 0)
 		return (0);
 	return (1);
-}
+}*/
 
 /*int	closed_by_walls(char **map)
 {
@@ -57,17 +72,22 @@ int walls_y(char **map)
 	
 }*/
 
-int	check_config(char **map)
+int	check_config(char **map, t_game *game)
 {
-	if (check_format(map) == 0)
+	if (check_format(map, game) == 0)
 	{
 		printf("Error config (format)\n");
 		return (0);
 	}
-	if (walls_y(map) == 0)
+	/*if (invalid_char(map) == 0)
+	{
+		printf("Invalid character\n");
+		return (0);
+	}*/
+	/*if (walls_y(map) == 0)
 	{
 		printf("Error config (walls)\n");
 		return (0);
-	}
+	}*/
 	return (1);
 }

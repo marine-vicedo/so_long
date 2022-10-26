@@ -35,19 +35,13 @@ t_image		load_image(void *mlx_ptr)
 	return (img);
 }
 
-int		key_hook(int keycode, void *param)
-{
-	printf("A key is pressed\n");
-	return (0);
-}
 
 int	main()
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_image	img;
-	int		key;
-	
+
 	/* Initializes the MLX library */
 	mlx_ptr = mlx_init();
 	
@@ -62,8 +56,6 @@ int	main()
 
 	/*Puts an image to the given window instance at location (x,y)*/
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img.img, 0, 0);
-
-	key = mlx_key_hook(win_ptr, key_hook, t_image);
 
 /*mx_loop is an infinite loop that would keep the program running,
  the window open, and would keep detecting the different events (press key, mouse...) and 

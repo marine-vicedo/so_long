@@ -6,9 +6,11 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:26:00 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/21 15:36:26 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/26 19:22:13 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* seg fault with t_game *game but not with t_game game*/
 
 #include "so_long.h"
 
@@ -28,13 +30,14 @@ char	*fill_map(char *src)
 	return (dest);
 }
 
-int	ft_count_lines(void)
+int	ft_count_lines(char *file)
 {
 	char	*line;
 	int		count;
 	int		fd2;
 
-	fd2 = open("../map1.ber", O_RDONLY);
+	count = 0;
+	fd2 = open(file, O_RDONLY);
 	line = get_next_line(fd2);
 	while (line)
 	{
@@ -47,19 +50,22 @@ int	ft_count_lines(void)
 	return (count);
 }
 
-char	**create_map(char **map, char *line)
+char	**create_map(char **map, char *file, t_game *game)
 {
 	int		i;
 	int		fd;
-	int		tab_size;
+	char	*line;
 
 	i = 0;
-	tab_size = ft_count_lines();
-	fd = open("../map1.ber", O_RDONLY);
-	map = (char **)malloc(sizeof(char *) * (tab_size + 1));
+	fd = open(file, O_RDONLY);
+	line = NULL;
+	game->height =  ft_count_lines(file);
+	map = (char **)malloc(sizeof(char *) * (game->height + 1));
 	if (!map)
 		return (NULL);
 	line = get_next_line(fd);
+	game->width = ft_strlen(line) - 1;
+	printf("%ld\n", game->width);
 	while (line)
 	{
 		map[i] = fill_map(line);
@@ -72,15 +78,41 @@ char	**create_map(char **map, char *line)
 	return (map);
 }
 
-int	main(void)
+/*void	map_values(char *file, t_game game)
+{
+	int		count;
+	int 	fd;
+	char	*line;
+	
+	count = 0;
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	game.width = ft_strlen(line) - 1;
+	while (line)
+	{
+		count++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	game.height = count;
+	close(fd);
+}*/
+
+int	main(int argc, char **argv)
 {
 	char	**map;
-	char	*line;
+	t_game	*game;
 
-	line = NULL;
 	map = NULL;
-	map = create_map(map, line);
-	if (check_config(map) == 0)
+	game = NULL;
+	if (check_parameters(argc, argv) == 1)
+	{
+		printf("Parameters invalid\n");
+		return (0);
+	}
+	//map_values(argv[1], game);
+	map = create_map(map, argv[1], game);
+	if (check_config(map, game) == 0)
 		exit_error(map);
 	print_tab(map);
 	free_tab(map);

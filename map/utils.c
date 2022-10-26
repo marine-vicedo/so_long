@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:25:54 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/21 12:22:11 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:51:54 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exit_error(char **map)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	free_tab(map);
 	exit(0);
 }
