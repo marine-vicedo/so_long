@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:20:51 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/20 18:03:16 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:49:37 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_getline(char *stash)
 	i = 0;
 	if (!stash || stash[0] == '\0')
 		return (NULL);
-	line = malloc(sizeof(char) * ft_strlen(stash) + 1);
+	line = malloc(sizeof(char) * ft_strlen_gnl(stash) + 1);
 	if (!line)
 		return (NULL);
 	while (stash[i] && stash[i] != '\n')
@@ -63,7 +63,7 @@ char	*ft_save_stash(char *stash)
 		return (free (stash), NULL);
 	if (stash[i])
 		i++;
-	save = malloc(sizeof(char) * ((ft_strlen(stash + i) + 1)));
+	save = malloc(sizeof(char) * ((ft_strlen_gnl(stash + i) + 1)));
 	if (!save)
 	{
 		free (stash);

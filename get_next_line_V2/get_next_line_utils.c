@@ -6,13 +6,13 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:20:47 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/20 15:59:33 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:49:53 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_gnl(const char *s)
 {
 	unsigned int	i;
 
@@ -30,7 +30,7 @@ char	*ft_strjoin(char *stash, char *buffer)
 	int		len;
 
 	i = 0;
-	len = ft_strlen(stash) + ft_strlen(buffer);
+	len = ft_strlen_gnl(stash) + ft_strlen_gnl(buffer);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);

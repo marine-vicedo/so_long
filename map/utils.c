@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:25:54 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/26 17:51:54 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:47:58 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,14 @@ int	count_tablines(char **tab)
 	while (tab[size])
 		size++;
 	return (size);
+}
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s && s[i])
+		i++;
+	return (i);
 }

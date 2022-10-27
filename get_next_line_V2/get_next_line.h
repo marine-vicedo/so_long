@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:20:57 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/20 15:59:36 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:48:55 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <limits.h>
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
+size_t	ft_strlen_gnl(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_search_newline(char *s);
 char	*ft_getline(char *stash);
