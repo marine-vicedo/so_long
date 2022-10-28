@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:20:51 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/27 15:49:37 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/28 18:08:28 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ char	*get_next_line(int fd)
 
 	i_read = 1;
 	buffer = NULL;
+	//printf("fd gnl is %d\n", fd);
 	if (fd < 0 || (read(fd, 0, 0) == -1))
 		return (NULL);
 	buffer = malloc(sizeof(char) * (2));

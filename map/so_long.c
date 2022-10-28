@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:26:00 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/27 18:59:40 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/28 19:20:55 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_count_lines(char *file)
 
 	count = 0;
 	fd2 = open(file, O_RDONLY);
+	if (fd2 < 0)
+		exit(0);
 	line = get_next_line(fd2);
 	while (line)
 	{
@@ -47,6 +49,7 @@ int	ft_count_lines(char *file)
 	}
 	close(fd2);
 	//printf("ft count lines %d\n", count);
+	//if count == 0 pas de lignes -> file vide, a rajouter
 	return (count);
 }
 
@@ -58,6 +61,8 @@ char	**create_map(char **map, char *file, t_game game)
 
 	i = 0;
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		exit_error(map);
 	line = NULL;
 	map = (char **)malloc(sizeof(char *) * (game.height + 1));
 	if (!map)
@@ -70,7 +75,6 @@ char	**create_map(char **map, char *file, t_game game)
 		free (line);
 		line = get_next_line(fd);
 	}
-	printf("i is %d\n", i);
 	map[i] = NULL;
 	close (fd);
 	return (map);
@@ -82,6 +86,9 @@ t_game	map_values(char *file, t_game game)
 	char	*line;
 	
 	fd = open(file, O_RDONLY);
+	printf("fd is %d\n", fd);
+	if (fd < 0)
+		exit(0);
 	line = get_next_line(fd);
 	game.width = ft_strlen(line) - 1;
 	game.height = ft_count_lines(file);

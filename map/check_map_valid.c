@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:52:26 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/27 19:32:27 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/28 19:24:28 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ int	check_collect_exit(char **map, t_game game)
 		while (x < game.width)
 		{
 			if (map[y][x] == 'C')
-				collect++;
+				collect++;//save this value in a struct !
 			if (map[y][x] == 'E')
-				exit++;
+				exit++;//save this value in a struct ?
 			x++;
 		}
 		x = 0;

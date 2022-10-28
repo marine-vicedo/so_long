@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:18:52 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/27 20:07:02 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/28 18:27:11 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,21 @@
 - there is no file (argc <= 1)
 - there is more than 1 file (argc >= 3) : print a warning to tell the user
 that only the 1st parameter will be considered
-- the filename extension is valid : the file does not be a hidden file (.file),
-it must be a .ber file.
-We check if the file preffix for the current and parent folder
-(if the file preffix is "./" or "../")
+- the filename extension is valid : it must be a .ber file.
+- check if is not a folder
 */
 
-
-int	check_filename_ext(char *file)
+int	check_filename_ext(char	*file)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	if (file && file[i] == '.')
-	{
-		if (file[i + 1] == '.' && file[i + 2] == '/')
-			i = 2;
-		else if (file[i + 1] == '/')
-			i = 1;
-		else
-		{
-			printf("Error : Hidden file\n");
-			return (1);
-		}
-	}
-	while (file[i] != '.')
-		i++;
-	while (file)
-	{
-		if (file[i] == '.' && file[i + 1] == 'b' && file [i + 2] == 'e'
-			&& file[i + 3] == 'r' && file[i + 4] == '\0')
-			return (0);
-		else
-			return (1);
-	}
-	return (0);
+	len = ft_strlen(file) - 1;
+
+	if (file[len] == 'r' && file[len - 1] == 'e' && file[len - 2] == 'b'
+		&& file[len - 3] == '.')
+		return (0);
+	else
+		return (1);
 }
 
 int	check_parameters(int argc, char **argv)
