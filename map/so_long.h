@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:25:49 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/28 19:24:40 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/31 19:58:42 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 typedef struct s_game
 {
-	int	width;
-	int height;
-	int	x;
-	int	y;
+	int		width;
+	int 	height;
+	char	**map;
+	char	**path;
 }	t_game;
 
 void	exit_error(char	**map);
@@ -43,6 +43,8 @@ int		check_player(char **map, t_game game);
 int		check_collect_exit(char **map, t_game game);
 int		closed_by_walls(char **map, t_game game);
 int		check_matrix(char **map, t_game game);
+t_game	copy_map_to_game(char **map, t_game game);
+t_game 	init_path(t_game game);
 
 
 #endif

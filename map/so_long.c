@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:26:00 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/28 19:20:55 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/10/31 20:11:58 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	**create_map(char **map, char *file, t_game game)
 		line = get_next_line(fd);
 	}
 	map[i] = NULL;
+	free(line);
 	close (fd);
 	return (map);
 }
@@ -92,8 +93,6 @@ t_game	map_values(char *file, t_game game)
 	line = get_next_line(fd);
 	game.width = ft_strlen(line) - 1;
 	game.height = ft_count_lines(file);
-	game.x = 0;
-	game.y = 0;
 	free (line);
 	close(fd);
 	return (game);
@@ -103,7 +102,7 @@ int	main(int argc, char **argv)
 {
 	char	**map;
 	t_game	game;
-
+	
 	map = NULL;
 	if (check_parameters(argc, argv) == 1)
 	{
@@ -116,7 +115,12 @@ int	main(int argc, char **argv)
 	printf("heigt value %d\n", game.height);
 	if (check_config(map, game) == 0)
 		exit_error(map);
-	print_tab(map);
+	game = copy_map_to_game(map, game);
+	print_tab(game.map);
+	game = init_path(game);
+	print_tab(game.path);
 	free_tab(map);
+	free_tab(game.map);
+	free_tab(game.path);
 	return (0);
 }
