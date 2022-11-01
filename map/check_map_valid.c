@@ -6,19 +6,14 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:52:26 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/31 15:52:51 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/01 12:31:43 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	invalid_character(char **map, t_game game)
+int	invalid_character(char **map, t_game game, int x, int y)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
 	while (map[y])
 	{
 		while (x < game.width)
@@ -35,14 +30,10 @@ int	invalid_character(char **map, t_game game)
 	return (1);
 }
 
-int	check_player(char **map, t_game game)
+int	check_player(char **map, t_game game, int x, int y)
 {
-	int	x;
-	int	y;
 	int	player;
 
-	x = 0;
-	y = 0;
 	player = 0;
 	while (map[y])
 	{
@@ -57,19 +48,14 @@ int	check_player(char **map, t_game game)
 	}
 	if (player == 1)
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
-int	check_collect_exit(char **map, t_game game)
+int	check_collect_exit(char **map, t_game game, int x, int y)
 {
-	int	x;
-	int	y;
 	int	collect;
 	int	exit;
 
-	x = 0;
-	y = 0;
 	collect = 0;
 	exit = 0;
 	while (map[y])
@@ -90,11 +76,8 @@ int	check_collect_exit(char **map, t_game game)
 	return (1);
 }
 
-int	closed_by_walls(char **map, t_game game)
+int	closed_by_walls(char **map, t_game game, int y)
 {
-	int	y;
-
-	y = 0;
 	while (map[y])
 	{
 		if (y == 0 || y == game.height - 1)

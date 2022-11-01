@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:33:05 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/28 19:24:34 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/01 12:31:26 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,24 @@ int	check_format(char **map, t_game game)
 	return (1);
 }
 
-int	check_matrix(char **map, t_game game)
+int	check_matrix(char **map, t_game game, int x, int y)
 {
-	if (invalid_character(map, game) == 0)
+	if (invalid_character(map, game, x, y) == 0)
 	{
 		printf("Error : Invalid character in the map\n");
 		return (0);
 	}
-	if (check_player(map, game) == 0)
+	if (check_player(map, game, x , y) == 0)
 	{
 		printf("Error : needs 1 player !\n");
 		return (0);
 	}
-	if (check_collect_exit(map, game) == 0)
+	if (check_collect_exit(map, game, x, y) == 0)
 	{
 		printf("Error : There is no exit or no collectibles in the map !\n");
 		return (0);
 	}
-	if (closed_by_walls(map, game) == 0)
+	if (closed_by_walls(map, game, y) == 0)
 	{
 		printf("Error config (walls)\n");
 		return (0);
@@ -61,12 +61,17 @@ int	check_matrix(char **map, t_game game)
 
 int	check_config(char **map, t_game game)
 {
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
 	if (check_format(map, game) == 0)
 	{
 		printf("Error config (format)\n");
 		return (0);
 	}
-	if (check_matrix(map, game) == 0)
+	if (check_matrix(map, game, x, y) == 0)
 		return (0);
 	return (1);
 }
