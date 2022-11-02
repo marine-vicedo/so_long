@@ -1,96 +1,77 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_valid.c                                  :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 18:52:26 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/01 12:31:43 by mvicedo          ###   ########.fr       */
+/*   Created: 2022/10/20 16:33:05 by mvicedo           #+#    #+#             */
+/*   Updated: 2022/11/01 12:31:26 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	invalid_character(char **map, t_game game, int x, int y)
+/* check is :
+- the table follow the above rules : an invalid character (something else than
+ 0, 1, C, E, P) (OK)
+OR a line with a different lenght (OK) OR more than one player/no exit OR
+no collectibles (OK)
+OR the map is not closed by walls (OK) :
+print an error msg, invalid the map, free and exit*/
+
+int	check_format(char **map, t_game game)
 {
-	while (map[y])
+	int	line;
+
+	line = 0;
+	while (map[line] != NULL)
 	{
-		while (x < game.width)
-		{
-			if (map[y][x] == 'C' || map[y][x] == 'E' || map[y][x] == 'P'
-				|| map[y][x] == '1' || map[y][x] == '0')
-				x++;
-			else
-				return (0);
-		}
-		x = 0;
-		y++;
+		if (ft_strlen(map[line]) != game.width)
+			return (0);
+		line++;
 	}
 	return (1);
 }
 
-int	check_player(char **map, t_game game, int x, int y)
+int	check_matrix(char **map, t_game game, int x, int y)
 {
-	int	player;
-
-	player = 0;
-	while (map[y])
+	if (invalid_character(map, game, x, y) == 0)
 	{
-		while (x < game.width)
-		{
-			if (map[y][x] == 'P')
-				player++;
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-	if (player == 1)
-		return (1);
-	return (0);
-}
-
-int	check_collect_exit(char **map, t_game game, int x, int y)
-{
-	int	collect;
-	int	exit;
-
-	collect = 0;
-	exit = 0;
-	while (map[y])
-	{
-		while (x < game.width)
-		{
-			if (map[y][x] == 'C')
-				collect++;//save this value in a struct !
-			if (map[y][x] == 'E')
-				exit++;//save this value in a struct ?
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-	if (collect == 0 || exit == 0)
+		printf("Error : Invalid character in the map\n");
 		return (0);
+	}
+	if (check_player(map, game, x , y) == 0)
+	{
+		printf("Error : needs 1 player !\n");
+		return (0);
+	}
+	if (check_collect_exit(map, game, x, y) == 0)
+	{
+		printf("Error : There is no exit or no collectibles in the map !\n");
+		return (0);
+	}
+	if (closed_by_walls(map, game, y) == 0)
+	{
+		printf("Error config (walls)\n");
+		return (0);
+	}
 	return (1);
 }
 
-int	closed_by_walls(char **map, t_game game, int y)
+int	check_config(char **map, t_game game)
 {
-	while (map[y])
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	if (check_format(map, game) == 0)
 	{
-		if (y == 0 || y == game.height - 1)
-		{
-			if (ft_strchr(map[y], '1') == 0)
-				return (0);
-		}
-		else if (y > 0 && y < game.height - 1)
-		{	
-			if (map[y][0] != '1' || map[y][game.width - 1] != '1')
-				return (0);
-		}
-		y++;
+		printf("Error config (format)\n");
+		return (0);
 	}
+	if (check_matrix(map, game, x, y) == 0)
+		return (0);
 	return (1);
 }
