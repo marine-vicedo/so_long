@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:25:49 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/02 18:21:19 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/08 19:35:03 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 # include <stdio.h>
 # include "../get_next_line_V2/get_next_line.h"
-# include "minilibx-linux/mlx.h"
-# include "minilibx-linux/mlx_int.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 
 typedef struct s_game
 {
@@ -27,15 +27,19 @@ typedef struct s_game
 	char	**path;
 	void	*mlx;
 	void	*win;
-	t_image	wall;
 }	t_game;
 
-typedef struct s_image
+typedef struct s_tile
 {
 	void	*img;
+	void	*wall;
+	void	*empty;
+	void	*player;
+	void	*item;
+	void	*exit;
 	int		width;
 	int		height;
-}	t_image;
+}	t_tile;
 
 void	exit_error(char	**map);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -64,6 +68,8 @@ int		all_items_are_collected(t_game game, int x, int y);
 int		valid_path(t_game game, int x, int y);
 t_game	map_values(char *file, t_game game);
 t_game	path_finding(t_game game);
+t_tile	images_id(t_game game, t_tile img);
+void	load_images(t_game game, t_tile img);
 
 
 #endif
