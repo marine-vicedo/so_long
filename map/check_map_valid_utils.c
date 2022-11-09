@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_valid.c                                  :+:      :+:    :+:   */
+/*   check_map_valid_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:52:26 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/01 12:31:43 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/09 16:37:05 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int	check_collect_exit(char **map, t_game game, int x, int y)
 		while (x < game.width)
 		{
 			if (map[y][x] == 'C')
-				collect++;//save this value in a struct !
+				collect++;
 			if (map[y][x] == 'E')
-				exit++;//save this value in a struct ?
+				exit++;
 			x++;
 		}
 		x = 0;

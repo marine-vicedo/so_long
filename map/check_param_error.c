@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:18:52 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/28 18:27:11 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/09 16:25:48 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,25 @@ int	check_filename_ext(char	*file)
 		return (1);
 }
 
-int	check_parameters(int argc, char **argv)
+int	check_args(int argc, char **argv)
 {
 	if (argc <= 1)
 	{
-		printf("Error : no arg\n");
-		return (1);
+		ft_putstr_fd("Error : you must provide a file", 2);
+		return (0);
 	}
 	else if (argc >= 3)
 	{
-		printf("Error : the program can read only one file at once\n");
-		return (1);
+		ft_putstr_fd("Error : the program can read only one file at once", 2);
+		return (0);
 	}
 	else
 	{
 		if (check_filename_ext(argv[1]) == 1)
-			{
-				printf("Filename extension is not valid\n");
-				return (1);
-			}
+		{
+			ft_putstr_fd("Filename extension is not valid", 2);
+			return (0);
+		}
 	}
-	return (0);
+	return (1);
 }

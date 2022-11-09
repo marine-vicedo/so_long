@@ -1,49 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 14:25:54 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/09 17:24:01 by mvicedo          ###   ########.fr       */
+/*   Created: 2022/11/09 16:38:29 by mvicedo           #+#    #+#             */
+/*   Updated: 2022/11/09 17:09:31 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_print(char *tab)
+void	exit_error(char **map)
 {
-	int	i;
-
-	i = 0;
-	while (tab[i] != '\0')
-	{
-		write(1, &tab[i], 1);
-		i++;
-	}
+	//write(2, "Error\n", 6);
+	free_tab(map);
+	exit(0);
 }
 
-void	print_tab(char **tab)
+void	free_tab(char **tab)
 {
 	int	i;
 
 	i = 0;
 	while (tab[i])
 	{
-		ft_print(tab[i]);
-		write(1, "\n", 1);
+		free(tab[i]);
 		i++;
 	}
+	free(tab);
 }
-
-int	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s && s[i])
-		i++;
-	return (i);
-}
-

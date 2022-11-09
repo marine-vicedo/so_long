@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:25:49 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/08 19:35:03 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/09 16:26:15 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 # include "../get_next_line_V2/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
+
+# define KEY_ESC	65307
+# define KEY_W		119
+# define KEY_S		115
+# define KEY_A		97
+# define KEY_D		100
+# define KEY_UP		65362
+# define KEY_DOWN	65364
+# define KEY_LEFT	65361
+# define KEY_RIGHT	65363
 
 typedef struct s_game
 {
@@ -49,9 +59,9 @@ int		ft_count_lines(char *file);
 char	*fill_map(char *src);
 void	free_tab(char **tab);
 void	print_tab(char **tab);
-int		check_config(char **map, t_game game);
+int		map_is_valid(char **map, t_game game);
 int		count_tablines(char **tab);
-int		check_parameters(int argc, char **argv);
+int		check_args(int argc, char **argv);
 int		ft_strlen(const char *s);
 int		check_format(char **map, t_game game);
 int		invalid_character(char **map, t_game game, int x, int y);
@@ -68,8 +78,11 @@ int		all_items_are_collected(t_game game, int x, int y);
 int		valid_path(t_game game, int x, int y);
 t_game	map_values(char *file, t_game game);
 t_game	path_finding(t_game game);
-t_tile	images_id(t_game game, t_tile img);
-void	load_images(t_game game, t_tile img);
-
+void	images_path(t_game *game, t_tile *img);
+void	load_images(t_game *game, t_tile *img);
+void	display_game(t_game *game, t_tile *img);
+int		handle_key_press(int key_code, t_game *game, t_tile *img);
+void	move_up(t_game *game, int x, int y, t_tile *img);
+void	ft_putstr_fd(char *s, int fd);
 
 #endif

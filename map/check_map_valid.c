@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   check_map_valid.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:33:05 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/01 12:31:26 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/09 17:16:09 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,28 @@ int	check_matrix(char **map, t_game game, int x, int y)
 {
 	if (invalid_character(map, game, x, y) == 0)
 	{
-		printf("Error : Invalid character in the map\n");
+		ft_putstr_fd("Error : invalid map\n", 2);
 		return (0);
 	}
 	if (check_player(map, game, x , y) == 0)
 	{
-		printf("Error : needs 1 player !\n");
+		ft_putstr_fd("Error : needs 1 player !\n", 2);
 		return (0);
 	}
 	if (check_collect_exit(map, game, x, y) == 0)
 	{
-		printf("Error : There is no exit or no collectibles in the map !\n");
+		ft_putstr_fd("Error : no exit or no collectibles in the map !\n", 2);
 		return (0);
 	}
 	if (closed_by_walls(map, game, y) == 0)
 	{
-		printf("Error config (walls)\n");
+		ft_putstr_fd("Error : the map is not surrounded by walls\n", 2);
 		return (0);
 	}
 	return (1);
 }
 
-int	check_config(char **map, t_game game)
+int	map_is_valid(char **map, t_game game)
 {
 	int	x;
 	int	y;
@@ -67,10 +67,7 @@ int	check_config(char **map, t_game game)
 	x = 0;
 	y = 0;
 	if (check_format(map, game) == 0)
-	{
-		printf("Error config (format)\n");
 		return (0);
-	}
 	if (check_matrix(map, game, x, y) == 0)
 		return (0);
 	return (1);

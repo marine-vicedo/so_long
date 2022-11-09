@@ -6,13 +6,13 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:26:59 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/10/26 14:24:28 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/09 16:43:34 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+/*int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 		i++;
 	}
 	return (0);
-}
+}*/
 
 int	ft_strchr(char *s, char c)
 {
@@ -53,6 +53,19 @@ char	*ft_strcpy(char *src, char *dest)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	write(fd, "\n", 1);
 }
 
 /*size_t	ft_strlen(const char *s)

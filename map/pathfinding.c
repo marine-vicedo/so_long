@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 18:26:36 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/08 14:47:49 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/09 17:35:59 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_game copy_map_to_game(char **map, t_game game)
 
 t_game init_path(t_game game, int x, int y)
 {
+	game.path = NULL;
 	game.path = (char **)malloc(sizeof(char *) * (game.height + 1));
 	if (!game.path)
 		exit(0);
@@ -69,10 +70,13 @@ void	check_valid_path(t_game game, int x, int y)
 {
 	while(check_pos_player(game, x, y) == 1)
 		game = move_pos_player(game, x, y);
-	if (valid_path(game, x, y) == 1 && all_items_are_collected(game, x, y) == 1)
-		printf("path is valid !");
-	else	
+	if (valid_path(game, x, y) != 1 && all_items_are_collected(game, x, y) != 1)
+	{
 		printf("path is wrong");
+		// free_tab(game.path);
+		// free_tab(game.map);
+		// exit (0);
+	}
 }
 
 //trouver la position x , y de notre player
