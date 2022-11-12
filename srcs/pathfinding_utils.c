@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marinevicedo <marinevicedo@student.42.f    +#+  +:+       +#+        */
+/*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 17:00:39 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/10 11:56:20 by marineviced      ###   ########.fr       */
+/*   Updated: 2022/11/12 18:15:06 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

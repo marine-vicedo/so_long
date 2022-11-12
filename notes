@@ -1,0 +1,56 @@
+pathfinding
+
+//trouver la position x , y de notre player
+//marquer la position du player a 1 dans notre matrice path et verifier si la position actuelle n'est pas Exit
+//appeler recursivement la fonction avec (i + 1, j) et (i, j + 1)
+// 
+
+
+
+//parcourir la map et trouver 'P'. verifier qu'il n'est pas entoure de murs (boucle)
+//si ok on va deplacer P dans la map -> boucle >> des que P rencontre un 0 ou un C (chemin valide), il peut se deplacer (la case est marquee d'un P)
+// quand boucle finit, check si P est au niveau de la sortie et verifier qu'il ne reste plus de C
+// valider ou invalider la map en fonction du resultat ci dessus
+
+
+map valid
+/* check is :
+- the table follow the above rules : an invalid character (something else than
+ 0, 1, C, E, P) (OK)
+OR a line with a different lenght (OK) OR more than one player/no exit OR
+no collectibles (OK)
+OR the map is not closed by walls (OK) :
+print an error msg, invalid the map, free and exit*/
+
+check args 
+/*checks if :
+- there is no file (argc <= 1)
+- there is more than 1 file (argc >= 3) : print a warning to tell the user
+that only the 1st parameter will be considered
+- the filename extension is valid : it must be a .ber file.
+- check if is not a folder
+*/
+
+
+	/* Initializes the MLX library */
+	mlx = mlx_init();
+	
+	/*Creates a new window instance */
+	win = mlx_new_window(mlx, 500, 500, "Title");
+
+
+	/*Creates a new MLX compatible image. not necessary */
+	img.img = mlx_new_image(mlx, 200, 200);
+
+	img = load_image(mlx);
+
+	/*Puts an image to the given window instance at location (x,y)*/
+	mlx_put_image_to_window(mlx, win, img.img, 0, 0);
+
+	mlx_hook(win, X_EVENT_KEY_PRESS, 0, &key_press, &param);
+	//mlx_hook(win, X_EVENT_KEY_EXIT, 0, &key_press, &param);
+
+/*mx_loop is an infinite loop that would keep the program running,
+ the window open, and would keep detecting the different events (press key, mouse...) and 
+calling the functions you’ve hooked to them. */
+	mlx_loop(mlx);

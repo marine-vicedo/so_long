@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_valid_utils.c                            :+:      :+:    :+:   */
+/*   map_valid_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marinevicedo <marinevicedo@student.42.f    +#+  +:+       +#+        */
+/*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:52:26 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/10 17:58:48 by marineviced      ###   ########.fr       */
+/*   Updated: 2022/11/12 18:36:21 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ int	invalid_character(t_game *game, int x, int y)
 {
 	while (game->map[y])
 	{
+		x = 0;
 		while (x < game->width)
 		{
-			if (game->map[y][x] == 'C' || game->map[y][x] == 'E' || game->map[y][x] == 'P'
-				|| game->map[y][x] == '1' || game->map[y][x] == '0')
+			if (game->map[y][x] == 'C' || game->map[y][x] == 'E'
+				|| game->map[y][x] == 'P' || game->map[y][x] == '1'
+				|| game->map[y][x] == '0')
 				x++;
 			else
 				return (0);
 		}
-		x = 0;
 		y++;
 	}
 	return (1);
@@ -37,13 +38,13 @@ int	check_player(t_game *game, int x, int y)
 	player = 0;
 	while (game->map[y])
 	{
+		x = 0;
 		while (x < game->width)
 		{
 			if (game->map[y][x] == 'P')
 				player++;
 			x++;
 		}
-		x = 0;
 		y++;
 	}
 	if (player == 1)
@@ -53,7 +54,6 @@ int	check_player(t_game *game, int x, int y)
 
 int	check_collect_exit(t_game *game, int x, int y)
 {
-	//int	collect;
 	int	exit;
 
 	game->item = 0;
@@ -71,7 +71,7 @@ int	check_collect_exit(t_game *game, int x, int y)
 		x = 0;
 		y++;
 	}
-	if (game->item == 0 || exit == 0)
+	if (game->item == 0 || exit != 1)
 		return (0);
 	return (1);
 }

@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   moves_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 14:26:00 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 17:56:04 by mvicedo          ###   ########.fr       */
+/*   Created: 2022/11/12 17:16:51 by mvicedo           #+#    #+#             */
+/*   Updated: 2022/11/12 18:37:49 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	find_pos_player(t_game *game)
 {
-	t_game	*game;
+	int	x;
+	int	y;
 
-	if (!check_args(argc, argv))
-		return (0);
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (0);
-	init_values(argv[1], game);
-	read_map(argv[1], game);
-	if (!map_is_valid(game))
-		exit_error(game, 1);
-	pathfinding(game);
-	print_tab(game->path);
-	display_game(game);
-	return (0);
+	x = 0;
+	y = 0;
+	while (y < game->height)
+	{
+		x = 0;
+		while (x < game->width)
+		{
+			if (game->map[y][x] == 'P')
+			{
+				game->player.x = x;
+				game->player.y = y;
+				break ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+void	display_moves_cnt(int moves_count)
+{
+	write(1, "number of movements : ", 23);
+	ft_putnbr_fd(moves_count, 1);
+	write(1, "\n", 1);
 }
