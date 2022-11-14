@@ -1,34 +1,42 @@
 NAME = so_long
-MLX = ./minilibx-linux
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
 
-CC = 		gcc
-CFLAGS = 	-Wall -Wextra -Werror
-MLXFLAGS = -L ./minilibx-linux -lmlx -lXext -lX11 -lz -lm
+SRC_DIR = src/
+OBJ_DIR = obj/
 
-SRCS = srcs/check_args.c srcs/exit_error_free.c srcs/init_values.c srcs/moves.c \
-srcs/pathfinding_utils.c srcs/display.c srcs/exit_game.c srcs/map_valid.c \
-srcs/moves_utils.c srcs/read_map.c srcs/utils_bis.c srcs/display_utils.c \
+SRC = check_args.c exit_error_free.c init_values.c moves.c \
+pathfinding_utils.c display.c exit_game.c map_valid.c \
+moves_utils.c read_map.c utils_bis.c display_utils.c \
 handle_key_press.c map_valid_utils.c pathfinding.c \
-srcs/so_long.c srcs/utils.c srcs/get_next_line.c \
-srcs/get_next_line_utils.c \
+so_long.c utils.c get_next_line.c \
+get_next_line_utils.c \
 
-OBJS = $(:.c=.o)
 
-all : 		$(NAME)
+SRCS = = $(addprefix $(SRC_DIR), $(SRC))
+OBJ = $(SRC:.c=.o)
+OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
+HEADER = -I ./include
+MLX = -L ./minilibx-linux -lmlx_Linux
+MLXFLAGS = -lmlx -lXext -lX11
 
-$(NAME) :	 $(OBJS)
-				make all -C $(MLX)
-				$(CC) $(OBJS) $(MLXFLAGS) -o $(NAME)
+all : $(OBJ_DIR) $(NAME) 
 
-%.o : 		%.c
-	$(CC) $(CFLAGS) $(MLXFLAGS) -c .I/includes -o $@ $<
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+
+$(NAME): $(OBJS)
+	$(MAKE) --no-print-directory -C minilibx-linux
+	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(MLXFLAGS) -o $(NAME)
 
 clean :
-				rm -f $(OBJS)
-				make clean -C $(MLX)
+		rm -f $(OBJS)
 
-fclean : 	clean
-				rm -f $(NAME)
+fclean : clean
+		rm -f $(NAME)
 
 re : fclean all
 
