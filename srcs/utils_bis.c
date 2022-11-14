@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:25:54 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 17:29:54 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:48:53 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_putstr_fd(char *s, int fd)
 	write(fd, "\n", 1);
 }
 
-static void	ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:26:59 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 18:45:59 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:49:56 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,6 @@ int	ft_strchr(char *s, char c)
 			return (0);
 	}
 	return (1);
-}
-
-char	*ft_strcpy(char *src, char *dest)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
 }
 
 char	*ft_strdup(const char *s)

@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 18:26:36 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 18:18:22 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:48:53 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_valid_path(t_game *game, int x, int y)
 	while (check_pos_player(game, x, y))
 		move_pos_player(game, x, y);
 	if (!(valid_path(game, x, y) && all_items_are_collected(game, x, y)))
-		exit_error(game, 2);
+		exit_error(game, 3);
 }
 
 void	pathfinding(t_game *game)

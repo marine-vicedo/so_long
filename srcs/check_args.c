@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:18:52 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 18:39:34 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:47:38 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_args(int argc, char **argv)
 {
 	if (argc < 2)
 	{
-		ft_putstr_fd("Error : map is missing", 2);
+		ft_putstr_fd("Error : map's file is missing", 2);
 		return (0);
 	}
 	else if (argc > 2)

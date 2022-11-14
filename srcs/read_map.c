@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:10:56 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 18:49:39 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:24:09 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	read_map(char *file, t_game *game)
 	if (!game->map)
 		return ;
 	line = get_next_line(fd);
+	if (!line)
+		exit_error(game, 1);
 	while (line)
 	{
 		game->map[i] = fill_map(line);

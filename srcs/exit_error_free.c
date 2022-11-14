@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:38:29 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 18:46:42 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:20:20 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,34 @@
 
 #include "so_long.h"
 
-void	exit_error(t_game *game, int error)
+int	exit_error(t_game *game, int error)
 {
 	if (error == 0)
 		ft_putstr_fd("Error : invalid fd", 2);
 	if (error == 1)
-		free_tab(game->map);
-	if (error == 2)
 	{
-		ft_putstr_fd("Error : invalid path", 2);
+		ft_putstr_fd("Error : map is empty", 2);
+		free_tab(game->map);
+	}		
+	if (error == 2)
+		free_tab(game->map);
+	if (error == 3)
+	{
+		ft_putstr_fd("Error : no valid path in the map", 2);
 		free_tab(game->path);
 		free_tab(game->map);
 	}
+	free(game);
+	exit (0);
+}
+
+int	exit_error_display(t_game *game)
+{
+	ft_putstr_fd("Error : can't open the sprites, check your files", 2);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	free_tab(game->map);
+	free_tab(game->path);
 	free(game);
 	exit (0);
 }

@@ -6,11 +6,10 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:26:00 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 17:56:04 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:39:17 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//
 #include "so_long.h"
 
 int	main(int argc, char **argv)
@@ -25,9 +24,9 @@ int	main(int argc, char **argv)
 	init_values(argv[1], game);
 	read_map(argv[1], game);
 	if (!map_is_valid(game))
-		exit_error(game, 1);
+		exit_error(game, 2);
 	pathfinding(game);
-	print_tab(game->path);
+	//print_tab(game->path);
 	display_game(game);
 	return (0);
 }
