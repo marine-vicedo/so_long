@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:25:49 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/14 20:39:04 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/15 15:56:04 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ typedef struct s_game
 	t_tile	img;
 	t_pos	player;
 }	t_game;
-
-//so long
-
 
 // check args
 int		check_args(int argc, char **argv);

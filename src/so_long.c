@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:26:00 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/14 15:39:17 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/15 15:18:13 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv)
 	if (!map_is_valid(game))
 		exit_error(game, 2);
 	pathfinding(game);
-	//print_tab(game->path);
 	display_game(game);
 	return (0);
 }

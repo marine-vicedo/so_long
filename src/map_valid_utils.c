@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:52:26 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 18:36:21 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:52:28 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	check_collect_exit(t_game *game, int x, int y)
 
 int	closed_by_walls(t_game *game, int y)
 {
-	while (game->map[y])
+	while (game->map[y] != NULL)
 	{
 		if (y == 0 || y == game->height - 1)
 		{

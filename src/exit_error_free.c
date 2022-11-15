@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:38:29 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/14 15:20:20 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/15 15:23:29 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	exit_error(t_game *game, int error)
 	if (error == 0)
 		ft_putstr_fd("Error : invalid fd", 2);
 	if (error == 1)
-	{
 		ft_putstr_fd("Error : map is empty", 2);
-		free_tab(game->map);
-	}		
 	if (error == 2)
 		free_tab(game->map);
 	if (error == 3)

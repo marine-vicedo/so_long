@@ -6,7 +6,7 @@
 /*   By: mvicedo <mvicedo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:53:22 by mvicedo           #+#    #+#             */
-/*   Updated: 2022/11/12 18:34:00 by mvicedo          ###   ########.fr       */
+/*   Updated: 2022/11/15 15:21:24 by mvicedo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	move_up(t_game *game, int x, int y)
 	}
 	if (game->map[y - 1][x] == 'E' && game->item == 0)
 	{
+		game->moves_cnt++;
+		display_moves_cnt(game->moves_cnt);
 		ft_putstr_fd("YOU WIN !\n", 1);
 		exit_game(game);
 	}
@@ -51,6 +53,8 @@ void	move_down(t_game *game, int x, int y)
 	}
 	if (game->map[y + 1][x] == 'E' && game->item == 0)
 	{
+		game->moves_cnt++;
+		display_moves_cnt(game->moves_cnt);
 		ft_putstr_fd("YOU WIN !\n", 1);
 		exit_game(game);
 	}
@@ -73,6 +77,8 @@ void	move_left(t_game *game, int x, int y)
 	}
 	if (game->map[y][x - 1] == 'E' && game->item == 0)
 	{
+		game->moves_cnt++;
+		display_moves_cnt(game->moves_cnt);
 		ft_putstr_fd("YOU WIN !\n", 1);
 		exit_game(game);
 	}
@@ -95,6 +101,8 @@ void	move_right(t_game *game, int x, int y)
 	}
 	if (game->map[y][x + 1] == 'E' && game->item == 0)
 	{	
+		game->moves_cnt++;
+		display_moves_cnt(game->moves_cnt);
 		ft_putstr_fd("YOU WIN !\n", 1);
 		exit_game(game);
 	}
